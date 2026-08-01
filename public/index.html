@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Setup Desk — Supply & Demand Backtester</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="panel">
+      <div class="brand">
+        <span class="brand-mark">◆</span>
+        <div>
+          <div class="brand-title">Setup Desk</div>
+          <div class="brand-sub">supply &amp; demand · fib confluence</div>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <label for="symbol">Pair</label>
+        <select id="symbol">
+          <option value="EUR/USD">EUR/USD</option>
+          <option value="GBP/USD">GBP/USD</option>
+          <option value="USD/JPY">USD/JPY</option>
+          <option value="AUD/USD">AUD/USD</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label for="candleCount">Candles (15min)</label>
+        <input id="candleCount" type="number" value="7000" min="500" max="7000" step="500" />
+      </div>
+
+      <button id="runBtn" class="run-btn">
+        <span class="run-btn-label">Run backtest</span>
+      </button>
+
+      <div id="statusLine" class="status-line"></div>
+
+      <div class="stats" id="stats" hidden>
+        <div class="stat">
+          <div class="stat-value" id="statTotal">—</div>
+          <div class="stat-label">setups</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value win" id="statWinRate">—</div>
+          <div class="stat-label">win rate</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value" id="statWins">—</div>
+          <div class="stat-label">wins</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value loss" id="statLosses">—</div>
+          <div class="stat-label">losses</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value" id="statOpen">—</div>
+          <div class="stat-label">open</div>
+        </div>
+      </div>
+
+      <div class="range-line" id="rangeLine"></div>
+    </aside>
+
+    <main class="results">
+      <div class="results-header">
+        <h1>Setups</h1>
+        <span class="results-count" id="resultsCount"></span>
+      </div>
+
+      <div id="emptyState" class="empty-state">
+        <div class="empty-glyph">◈</div>
+        <p>Run a backtest to populate this list.</p>
+        <p class="empty-sub">Pulls historical 15-min candles from Twelve Data, runs the strategy across all of them, and lists every setup found — most recent first.</p>
+      </div>
+
+      <ul id="setupList" class="setup-list" hidden></ul>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
+
